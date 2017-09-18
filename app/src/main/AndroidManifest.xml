@@ -23,6 +23,12 @@
         <activity android:name=".WeatherForecast">
 
         </activity>
+        <activity android:name=".ZhihuNewspaper">
+
+        </activity>
+        <activity android:name=".EnglishOneGet">
+
+        </activity>
     </application>
 
 </manifest>

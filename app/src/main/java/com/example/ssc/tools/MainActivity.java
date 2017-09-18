@@ -86,9 +86,11 @@ public class MainActivity extends AppCompatActivity
             //天气预报
             startActivity(new Intent(MainActivity.this, WeatherForecast.class));
         } else if (id == R.id.nav_gallery) {
-
+            //知乎日报
+            startActivity(new Intent(MainActivity.this, ZhihuNewspaper.class));
         } else if (id == R.id.nav_slideshow) {
-
+            //每日英语
+            startActivity(new Intent(MainActivity.this, EnglishOneGet.class));
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
