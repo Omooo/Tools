@@ -1,12 +1,23 @@
 package com.example.ssc.tools;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,6 +26,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -47,16 +59,16 @@ public class WeatherForecast extends Activity {
     private TextView mTmp3;
 
     final String weatherAppKey = "5e9d91564360447ca6be642716bb8a28";
+
+    private LineChart mLineChart;
+    private LineDataSet mLineDataSet;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weather);
 
         mEditText1 = findViewById(R.id.editText1);
-
-//        mImageView1 = findViewById(R.id.weather_image1);
-//        mImageView2 = findViewById(R.id.weather_image2);
-//        mImageView3 = findViewById(R.id.weather_image3);
 
         mDate1 = findViewById(R.id.weather_date1);
         mWeather1 = findViewById(R.id.weather_state1);
@@ -69,6 +81,91 @@ public class WeatherForecast extends Activity {
         mDate3 = findViewById(R.id.weather_date3);
         mWeather3 = findViewById(R.id.weather_state3);
         mTmp3 = findViewById(R.id.weather_temp3);
+
+        mLineChart = findViewById(R.id.mLineChar);
+        mLineChart.setDrawGridBackground(false);
+        mLineChart.getDescription().setEnabled(false);
+
+        drawLineChart();
+    }
+
+    private void drawLineChart() {
+        //x轴
+        LimitLine llXAxis = new LimitLine(10f, "标记");
+        //设置线宽
+        llXAxis.setLineWidth(4f);
+        llXAxis.enableDashedLine(10f, 10f, 0f);
+        //设置
+        llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+        llXAxis.setTextSize(10f);
+
+        XAxis xAxis = mLineChart.getXAxis();
+        xAxis.enableGridDashedLine(10f, 10f, 0f);
+        //设置x轴的最大值
+        xAxis.setAxisMaximum(30f);
+        //设置x轴的最小值
+        xAxis.setAxisMinimum(0f);
+        //不显示X轴
+        xAxis.setEnabled(false);
+        YAxis leftAxis = mLineChart.getAxisLeft();
+//        //重置所有限制线,以避免重叠线
+//        leftAxis.removeAllLimitLines();
+        //y轴最大
+        leftAxis.setAxisMaximum(40f);
+        //y轴最小
+        leftAxis.setAxisMinimum(20f);
+        leftAxis.setEnabled(false);
+        leftAxis.enableGridDashedLine(5f, 5f, 0f);
+        leftAxis.setDrawZeroLine(false);
+        //限制数据
+        leftAxis.setDrawLimitLinesBehindData(true);
+        mLineChart.getAxisRight().setEnabled(false);
+
+        //模拟数据
+        ArrayList<Entry> values = new ArrayList<Entry>();
+        values.add(new Entry(5, 25));
+        values.add(new Entry(15, 20));
+        values.add(new Entry(25, 30));
+        //设置数据
+        setData(values);
+    }
+
+    private void setData(ArrayList<Entry> values) {
+        if (mLineChart.getData() != null && mLineChart.getData().getDataSetCount() > 0) {
+            mLineDataSet = (LineDataSet) mLineChart.getData().getDataSetByIndex(0);
+            mLineDataSet.setValues(values);
+            mLineChart.getData().notifyDataChanged();
+            mLineChart.notifyDataSetChanged();
+        } else {
+            // 创建一个数据集,并给它一个类型
+            mLineDataSet = new LineDataSet(values,"");
+            mLineDataSet.setValueTextSize(20f);
+            // 在这里设置线
+            mLineDataSet.enableDashedLine(10f, 5f, 0f);
+            mLineDataSet.enableDashedHighlightLine(10f, 5f, 0f);
+            mLineDataSet.setColor(Color.WHITE);
+            mLineDataSet.setCircleColor(Color.WHITE);
+            mLineDataSet.setLineWidth(1f);
+            mLineDataSet.setCircleRadius(3f);
+            mLineDataSet.setDrawCircleHole(false);
+            mLineDataSet.setValueTextSize(20f);
+            mLineDataSet.setValueTextColor(Color.WHITE);
+            mLineDataSet.setFormLineWidth(1f);
+            mLineDataSet.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
+            mLineDataSet.setFormSize(15.f);
+            //不填充
+            mLineDataSet.setDrawFilled(false);
+
+            ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+            //添加数据集
+            dataSets.add(mLineDataSet);
+
+            //创建一个数据集的数据对象
+            LineData data = new LineData(dataSets);
+
+            //谁知数据
+            mLineChart.setData(data);
+        }
     }
 
     public void SearchWeather(View view) {
@@ -106,6 +203,7 @@ public class WeatherForecast extends Activity {
         String[] dateList=new String[3];
         String[] weatherList=new String[3];
         String[] tmpList=new String[3];
+        double[] averageTmp = new double[3];
         //解析Json数据
         public void GetJsonValue(String json) {
             JSONObject jsonObject = null;
@@ -127,9 +225,12 @@ public class WeatherForecast extends Activity {
                 weatherList[0] = txt_d1;
                 //今天温度
                 JSONObject todayTemp = today.getJSONObject("tmp");
-                String tmp1 = todayTemp.getString("min") + " - " + todayTemp.getString("max")+"℃";
+                String minTmp1 = todayTemp.getString("min");
+                String maxTmp1 = todayTemp.getString("max");
+                String tmp1 = minTmp1 + " - " + maxTmp1 + "℃";
                 Log.i("233--tmp1", tmp1);
                 tmpList[0] = tmp1;
+                averageTmp[0] = (Integer.parseInt(minTmp1) + Integer.parseInt(maxTmp1))/2;
 
                 //明天
                 JSONObject  tomorrow = (JSONObject) jsonArray1.get(1);
@@ -140,9 +241,12 @@ public class WeatherForecast extends Activity {
                 Log.i("233-txt_d2", txt_d2);
                 weatherList[1] = txt_d2;
                 JSONObject tomorrowTemp = tomorrow.getJSONObject("tmp");
-                String tmp2 = tomorrowTemp.getString("min") + " - " + tomorrowTemp.getString("max")+"℃";
+                String minTmp2 = tomorrowTemp.getString("min");
+                String maxTmp2 = tomorrowTemp.getString("max");
+                String tmp2 = minTmp2 + " - " + maxTmp2 + "℃";
                 Log.i("233--tmp2", tmp2);
                 tmpList[1] = tmp2;
+                averageTmp[1] = (Integer.parseInt(minTmp2) + Integer.parseInt(maxTmp2)) / 2;
 
                 //后天
                 JSONObject aftertomorrow = (JSONObject) jsonArray1.get(2);
@@ -153,9 +257,13 @@ public class WeatherForecast extends Activity {
                 Log.i("233-txt_d3", txt_d3);
                 weatherList[2] = txt_d3;
                 JSONObject aftertomorrowTemp = aftertomorrow.getJSONObject("tmp");
-                String tmp3 = aftertomorrowTemp.getString("min") + " - " + aftertomorrowTemp.getString("max")+"℃";
+                String minTmp3 = aftertomorrowTemp.getString("min");
+                String maxTmp3 = aftertomorrowTemp.getString("max");
+                String tmp3 = minTmp3 + " - " + maxTmp3+"℃";
                 Log.i("233--tmp3", tmp3);
                 tmpList[2] = tmp3;
+                averageTmp[2] = (Integer.parseInt(minTmp3) + Integer.parseInt(maxTmp3)) / 2;
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -175,86 +283,11 @@ public class WeatherForecast extends Activity {
                     mWeather3.setText(weatherList[2]);
                     mTmp3.setText(tmpList[2]);
 
-                    //辣鸡代码！
-//                    Log.i("weatherList[0]", weatherList[0]);
-//                    if (weatherList[0].equals("多云"))
-//                        mImageView1.setImageResource(R.mipmap.p3);
-//                    else if (weatherList[0].equals("晴"))
-//                        mImageView1.setImageResource(R.mipmap.p2);
-//                    else if (weatherList[0].equals("小雨"))
-//                        mImageView1.setImageResource(R.mipmap.p4);
-//                    else if (weatherList[0].equals("阴"))
-//                        mImageView1.setImageResource(R.mipmap.p5);
-//                    else if (weatherList[0].equals("阵雨"))
-//                        mImageView1.setImageResource(R.mipmap.p6);
-//                    else if (weatherList[0].equals("中雨"))
-//                        mImageView1.setImageResource(R.mipmap.p7);
-//                    else if (weatherList[0].equals("大雨"))
-//                        mImageView1.setImageResource(R.mipmap.p8);
-//                    else if (weatherList[0].equals("雾"))
-//                        mImageView1.setImageResource(R.mipmap.p9);
-//                    else if (weatherList[0].equals("霾"))
-//                        mImageView1.setImageResource(R.mipmap.p10);
-//                    else if (weatherList[0].equals("少云"))
-//                        mImageView1.setImageResource(R.mipmap.p11);
-//                    else if (weatherList[0].equals("晴间多云"))
-//                        mImageView1.setImageResource(R.mipmap.p12);
-//                    else if (weatherList[0].equals("有风"))
-//                        mImageView1.setImageResource(R.mipmap.p13);
-//
-//                    if (weatherList[1].equals("晴"))
-//                        mImageView1.setImageResource(R.mipmap.p2);
-//                    else if (weatherList[1].equals("多云"))
-//                        mImageView1.setImageResource(R.mipmap.p3);
-//                    else if (weatherList[1].equals("小雨"))
-//                        mImageView1.setImageResource(R.mipmap.p4);
-//                    else if (weatherList[1].equals("阴"))
-//                        mImageView1.setImageResource(R.mipmap.p5);
-//                    else if (weatherList[1].equals("阵雨"))
-//                        mImageView1.setImageResource(R.mipmap.p6);
-//                    else if (weatherList[1].equals("中雨"))
-//                        mImageView1.setImageResource(R.mipmap.p7);
-//                    else if (weatherList[1].equals("大雨"))
-//                        mImageView1.setImageResource(R.mipmap.p8);
-//                    else if (weatherList[1].equals("雾"))
-//                        mImageView1.setImageResource(R.mipmap.p9);
-//                    else if (weatherList[1].equals("霾"))
-//                        mImageView1.setImageResource(R.mipmap.p10);
-//                    else if (weatherList[1].equals("少云"))
-//                        mImageView1.setImageResource(R.mipmap.p11);
-//                    else if (weatherList[1].equals("晴间多云"))
-//                        mImageView1.setImageResource(R.mipmap.p12);
-//                    else if (weatherList[1].equals("有风"))
-//                        mImageView1.setImageResource(R.mipmap.p13);
-//
-//                    if (weatherList[2].equals("晴"))
-//                        mImageView1.setImageResource(R.mipmap.p2);
-//                    else if (weatherList[2].equals("多云"))
-//                        mImageView1.setImageResource(R.mipmap.p3);
-//                    else if (weatherList[2].equals("小雨"))
-//                        mImageView1.setImageResource(R.mipmap.p4);
-//                    else if (weatherList[2].equals("阴"))
-//                        mImageView1.setImageResource(R.mipmap.p5);
-//                    else if (weatherList[2].equals("阵雨"))
-//                        mImageView1.setImageResource(R.mipmap.p6);
-//                    else if (weatherList[2].equals("中雨"))
-//                        mImageView1.setImageResource(R.mipmap.p7);
-//                    else if (weatherList[2].equals("大雨"))
-//                        mImageView1.setImageResource(R.mipmap.p8);
-//                    else if (weatherList[2].equals("雾"))
-//                        mImageView1.setImageResource(R.mipmap.p9);
-//                    else if (weatherList[2].equals("霾"))
-//                        mImageView1.setImageResource(R.mipmap.p10);
-//                    else if (weatherList[2].equals("少云"))
-//                        mImageView1.setImageResource(R.mipmap.p11);
-//                    else if (weatherList[2].equals("晴间多云"))
-//                        mImageView1.setImageResource(R.mipmap.p12);
-//                    else if (weatherList[2].equals("有风"))
-//                        mImageView1.setImageResource(R.mipmap.p13);
                 }
             });
 
         }
 
     }
+
 }

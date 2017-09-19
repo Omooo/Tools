@@ -3,29 +3,33 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_weather"
             android:icon="@mipmap/p1"
             android:title="天气预报"/>
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_newspaper"
             android:icon="@mipmap/p3"
             android:title="知乎日报"/>
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_english"
             android:icon="@mipmap/english_icon"
             android:title="每日一句"/>
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools"/>
+            android:icon="@mipmap/tools_icon"
+            android:title="工具箱"/>
+        <item
+            android:id="@+id/nav_driver"
+            android:icon="@mipmap/p5"
+            android:title="开车模式"/>
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share"/>
+                android:id="@+id/nav_settings"
+                android:icon="@mipmap/p6"
+                android:title="设置中心"/>
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

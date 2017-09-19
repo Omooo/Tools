@@ -29,6 +29,18 @@
         <activity android:name=".EnglishOneGet">
 
         </activity>
+        <activity android:name=".BTSource">
+
+        </activity>
+        <activity android:name=".SettingsTools">
+
+        </activity>
+        <activity android:name=".ToolsCollectionButton">
+
+        </activity>
+        <activity android:name=".Tools_Led">
+
+        </activity>
     </application>
 
 </manifest>

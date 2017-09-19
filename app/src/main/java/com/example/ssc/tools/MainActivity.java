@@ -81,22 +81,28 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_weather) {
             // Handle the camera action
             //天气预报
             startActivity(new Intent(MainActivity.this, WeatherForecast.class));
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_newspaper) {
             //知乎日报
             startActivity(new Intent(MainActivity.this, ZhihuNewspaper.class));
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_english) {
             //每日英语
             startActivity(new Intent(MainActivity.this, EnglishOneGet.class));
         } else if (id == R.id.nav_manage) {
+            //工具箱
+            startActivity(new Intent(MainActivity.this,ToolsCollectionButton.class));
 
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.nav_settings) {
+            //设置中心
+            startActivity(new Intent(MainActivity.this, SettingsTools.class));
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.nav_driver) {
+            //BT资源
+            startActivity(new Intent(MainActivity.this, BTSource.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
