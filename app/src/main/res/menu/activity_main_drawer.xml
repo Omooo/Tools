@@ -7,9 +7,9 @@
             android:icon="@mipmap/p1"
             android:title="天气预报"/>
         <item
-            android:id="@+id/nav_newspaper"
-            android:icon="@mipmap/p3"
-            android:title="知乎日报"/>
+            android:id="@+id/nav_article"
+            android:icon="@mipmap/article_icon"
+            android:title="每日一文"/>
         <item
             android:id="@+id/nav_english"
             android:icon="@mipmap/english_icon"

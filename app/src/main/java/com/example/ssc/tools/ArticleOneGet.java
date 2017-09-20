@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 /**
- * Created by SSC on 2017/9/17.
+ * Created by SSC on 2017/9/20.
  */
 
-public class ZhihuNewspaper extends Activity {
+public class ArticleOneGet extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.newspaper);
-
+        setContentView(R.layout.article);
     }
 }

@@ -4,8 +4,23 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TextView
-        android:text="吃惊"
+    <EditText
+        android:id="@+id/text_led"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/button_led"
+        android:text="滚动显示"
+        android:onClick="startRollingLed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <!--&lt;!&ndash;动态加载布局&ndash;&gt;-->
+    <!--<LinearLayout-->
+        <!--android:id="@+id/rolling_xml"-->
+        <!--android:screenOrientation="landscape"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+    <!--</LinearLayout>-->
 </LinearLayout>

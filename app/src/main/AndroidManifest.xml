@@ -23,9 +23,6 @@
         <activity android:name=".WeatherForecast">
 
         </activity>
-        <activity android:name=".ZhihuNewspaper">
-
-        </activity>
         <activity android:name=".EnglishOneGet">
 
         </activity>
@@ -39,6 +36,13 @@
 
         </activity>
         <activity android:name=".Tools_Led">
+
+        </activity>
+        <activity android:name=".Tools_Led_Marquee"
+                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+
+        </activity>
+        <activity android:name=".ArticleOneGet">
 
         </activity>
     </application>

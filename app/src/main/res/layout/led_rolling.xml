@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:background="#FFFFCC"
+              android:id="@+id/led_layout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.gongwen.marqueen.SimpleMarqueeView
+        android:id="@+id/simpleMarqueeView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inAnimation="@anim/in_right"
+        android:outAnimation="@anim/out_left"
+        android:flipInterval="2500"
+        app:marqueeAnimDuration="2000"
+        app:smvTextColor="#FF6666"
+        android:autoStart="true"
+        app:smvTextGravity="center_vertical"
+        app:smvTextSize="80sp">
+
+    </com.gongwen.marqueen.SimpleMarqueeView>
+</LinearLayout>

@@ -85,9 +85,9 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
             //天气预报
             startActivity(new Intent(MainActivity.this, WeatherForecast.class));
-        } else if (id == R.id.nav_newspaper) {
-            //知乎日报
-            startActivity(new Intent(MainActivity.this, ZhihuNewspaper.class));
+        } else if (id == R.id.nav_article) {
+            //每日一文
+            startActivity(new Intent(MainActivity.this, ArticleOneGet.class));
         } else if (id == R.id.nav_english) {
             //每日英语
             startActivity(new Intent(MainActivity.this, EnglishOneGet.class));
