@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 /**
@@ -13,27 +13,29 @@ import android.widget.Toast;
 
 public class SettingsTools extends Activity {
 
-    private ImageButton mImageButton1;
-    int num_click = 0;
+    private Switch mSwitch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        mImageButton1 = findViewById(R.id.imageButton1);
+        mSwitch = findViewById(R.id.switchButton);
 
     }
 
-    public void imageClick(View view) {
+    public void switchMode(View view) {
+        if (mSwitch.isChecked()) {
+            Toast.makeText(this, "打开", Toast.LENGTH_SHORT).show();
+        }else
+            Toast.makeText(this, "关闭", Toast.LENGTH_SHORT).show();
 
-        num_click++;
-        if (num_click % 2 == 0) {
-            mImageButton1.setImageResource(R.mipmap.close_icon);
-            Toast.makeText(this, "司机模式已经关闭", Toast.LENGTH_SHORT).show();
-        } else {
-            mImageButton1.setImageResource(R.mipmap.open_icon);
-            Toast.makeText(this, "司机模式开启成功", Toast.LENGTH_SHORT).show();
-        }
+//        int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+//        if (mode == Configuration.UI_MODE_NIGHT_YES)
+//            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//        else if (mode == Configuration.UI_MODE_NIGHT_NO) {
+//            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//        }
+//        recreate();
     }
 }

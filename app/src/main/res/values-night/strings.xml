@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SwitchNight</string>
+    <string name="day_night_label">夜间模式</string>
+</resources>

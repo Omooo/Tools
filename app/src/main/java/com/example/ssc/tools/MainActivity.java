@@ -98,11 +98,14 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_settings) {
             //设置中心
             startActivity(new Intent(MainActivity.this, SettingsTools.class));
-        } else if (id == R.id.nav_send) {
-
-        } else if (id == R.id.nav_driver) {
-            //BT资源
-            startActivity(new Intent(MainActivity.this, BTSource.class));
+        } else if (id == R.id.nav_about) {
+            //关于
+            startActivity(new Intent(this,AboutTools.class));
+        } else {
+            if (id == R.id.nav_driver) {
+                //BT资源
+                startActivity(new Intent(MainActivity.this, BTSource.class));
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

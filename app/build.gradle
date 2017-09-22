@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "com.example.ssc.tools"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -32,6 +32,14 @@ dependencies {
     compile 'org.jsoup:jsoup:1.10.3'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
     compile 'com.gongwen:marqueelibrary:1.1.1'
+    compile 'com.android.support:appcompat-v7:26'
+
+    //QRCode
+    compile 'com.journeyapps:zxing-android-embedded:3.4.0'
+    compile 'com.android.support:appcompat-v7'
+//    compile 'com.android.support:appcompat-v7:23.1.0'
+    //AwesomeQRCode
+    compile 'com.github.SumiMakito:AwesomeQRCode:1.0.6'
 
     testCompile 'junit:junit:4.12'
 }
