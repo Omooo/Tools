@@ -1,6 +1,7 @@
 package com.example.ssc.tools;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,6 +28,7 @@ import java.io.IOException;
 public class AboutTools extends Activity {
 
     private ImageView mimageView;
+    int num = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,13 +39,14 @@ public class AboutTools extends Activity {
     }
 
     public void shareApp(View view) {
+        num++;
         /**
          * 待优化部分
          * 略显卡顿
          */
         //生成二维码
         Bitmap image_bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.qrcode_background);
-        String url = "http://www.wooyun.site/";
+        String url = "http://www.wooyun.site/Tools.apk";
         new AwesomeQRCode.Renderer()
                 .contents(url)
                 .background(image_bitmap)
@@ -65,6 +68,10 @@ public class AboutTools extends Activity {
                         e.printStackTrace();
                     }
                 });
+
+        if (num == 1) {
+            new AlertDialog.Builder(AboutTools.this).setTitle("提示").setMessage("二维码已生成，再次点击即可分享").setPositiveButton("确定", null).show();
+        }
         //分享
         if (mimageView.getDrawable() == null) {
             return;
@@ -90,7 +97,10 @@ public class AboutTools extends Activity {
         {
             return;
         }
-        qrCodeBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+
+        if (qrCodeBitmap != null) {
+            qrCodeBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+        }
         try {
             fOut.flush();
             fOut.close();
@@ -118,6 +128,12 @@ public class AboutTools extends Activity {
 
     public void goToMyBlog(View v) {
         Uri uri = Uri.parse("http://omooo.top/");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    public void goToMaike(View view) {
+        Uri uri = Uri.parse("http://cn.mikecrm.com/vrOEBKz");
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }

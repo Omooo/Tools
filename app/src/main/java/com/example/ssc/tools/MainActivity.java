@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_about) {
             //关于
             startActivity(new Intent(this,AboutTools.class));
+//            startActivity(new Intent(this,WelcomeActivity.class));
         } else {
             if (id == R.id.nav_driver) {
                 //BT资源
