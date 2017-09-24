@@ -40,6 +40,9 @@ dependencies {
 //    compile 'com.android.support:appcompat-v7:23.1.0'
     //AwesomeQRCode
     compile 'com.github.SumiMakito:AwesomeQRCode:1.0.6'
+    //TextView特效
+    compile "com.hanks:htextview-base:0.1.1"
+    compile "com.hanks:htextview-scale:0.1.1"
 
     testCompile 'junit:junit:4.12'
 }

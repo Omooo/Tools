@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.github.sumimakito.awesomeqr.AwesomeQRCode;
+import com.hanks.htextview.scale.ScaleTextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,6 +30,8 @@ public class AboutTools extends Activity {
 
     private ImageView mimageView;
     int num = 0;
+    private ScaleTextView mScaleTextView;
+    private ImageView mImageViewIcon;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +39,21 @@ public class AboutTools extends Activity {
         setContentView(R.layout.about_page);
 
         mimageView = findViewById(R.id.qrcode);
+        mScaleTextView = findViewById(R.id.scaleTextView);
+        mImageViewIcon = findViewById(R.id.app_icon);
+//        mScaleTextView.animateText("Waiting will find more.,Believe me.");
+        mImageViewIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                num++;
+                if (num%2==1) {
+                    mScaleTextView.animateText("Believe me,waiting will find more.");
+                }else
+                    mScaleTextView.animateText("Don't touch me, I'm shy");
+            }
+        });
     }
+
 
     public void shareApp(View view) {
         num++;
