@@ -50,7 +50,10 @@ public class ArticleOneGet extends Activity {
 
         public void AccessNetwork() {
             OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder().url(url).build();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .addHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
+                    .build();
             Call call = client.newCall(request);
             call.enqueue(new Callback() {
                 @Override
