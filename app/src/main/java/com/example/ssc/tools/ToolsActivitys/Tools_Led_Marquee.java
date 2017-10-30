@@ -1,4 +1,4 @@
-package com.example.ssc.tools;
+package com.example.ssc.tools.ToolsActivitys;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.Display;
 
+import com.example.ssc.tools.R;
 import com.gongwen.marqueen.SimpleMF;
 import com.gongwen.marqueen.SimpleMarqueeView;
 

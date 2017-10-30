@@ -49,13 +49,13 @@
         <activity android:name=".SettingsTools">
 
         </activity>
-        <activity android:name=".ToolsCollectionButton">
+        <activity android:name=".ToolsActivitys.ToolsCollectionButton">
 
         </activity>
-        <activity android:name=".Tools_Led">
+        <activity android:name=".ToolsActivitys.Tools_Led">
 
         </activity>
-        <activity android:name=".Tools_Led_Marquee"
+        <activity android:name=".ToolsActivitys.Tools_Led_Marquee"
                   android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
 
         </activity>
@@ -69,6 +69,15 @@
                  android:persistent="true">
 
         </service>
+        <activity android:name=".ToolsActivitys.ToolsClassTables">
+
+        </activity>
+        <activity android:name=".ToolsActivitys.ToolsTodayStep">
+
+        </activity>
+        <activity android:name=".ToolsActivitys.ToolsBirth">
+
+        </activity>
     </application>
 
 </manifest>
