@@ -10,6 +10,15 @@
     <!--<uses-feature android:name="android.hardware.camera" />-->
     <!--<uses-feature android:name="android.hardware.camera.autofocus" />-->
 
+    <!--计步传感器-->
+    <uses-feature
+        android:name="android.hardware.sensor.stepcounter"
+        android:required="true" />
+    <!--步行检测传感器-->
+    <uses-feature
+        android:name="android.hardware.sensor.stepdetector"
+        android:required="true" />
+
     <application
         android:persistent="true"
         android:allowBackup="true"
@@ -76,6 +85,9 @@
 
         </activity>
         <activity android:name=".ToolsActivitys.ToolsBirth">
+
+        </activity>
+        <activity android:name=".ToolsActivitys.ToolsDie">
 
         </activity>
     </application>

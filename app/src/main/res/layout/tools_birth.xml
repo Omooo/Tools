@@ -94,12 +94,12 @@
             android:layout_height="2dp"/>
     </TableLayout>
     <Button
+        android:id="@+id/btn_switchToDie"
         android:text="死之钟"
         android:textSize="20sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
-        android:background="#FFFFFF"
         android:textColor="#FF6666"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
