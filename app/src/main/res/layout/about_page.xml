@@ -41,7 +41,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_centerHorizontal="true"
                     android:textColor="#66CCCC"
-                    android:textSize="20sp"/>
+                    android:textSize="30sp"/>
                 <TextView
                     android:id="@+id/app_version"
                     android:text="Version:1.0.0"

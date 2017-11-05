@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,7 @@ public class AboutTools extends Activity {
     int num = 0;
     private ScaleTextView mScaleTextView;
     private ImageView mImageViewIcon;
+    private Handler mHandler = new Handler();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,8 +54,9 @@ public class AboutTools extends Activity {
                     mScaleTextView.animateText("Don't touch me, I'm shy");
             }
         });
-    }
 
+        mHandler.postDelayed(new Task(), 2000);
+    }
 
     public void shareApp(View view) {
         num++;
@@ -153,5 +156,12 @@ public class AboutTools extends Activity {
         Uri uri = Uri.parse("http://cn.mikecrm.com/vrOEBKz");
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
+    }
+
+    class Task implements Runnable {
+        @Override
+        public void run() {
+            mScaleTextView.animateText("Believe me,waiting will find more.");
+        }
     }
 }

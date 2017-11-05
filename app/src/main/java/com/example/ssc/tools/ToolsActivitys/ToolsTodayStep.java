@@ -1,6 +1,7 @@
 package com.example.ssc.tools.ToolsActivitys;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -10,6 +11,9 @@ import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.example.ssc.tools.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by SSC on 2017/10/19.
@@ -33,6 +37,20 @@ public class ToolsTodayStep extends Activity implements SensorEventListener {
         mSensorCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         mSensorDetector = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
         initView();
+        //第一次启动将当前日期存入
+        firstSaveDate();
+    }
+
+    private void firstSaveDate() {
+        SharedPreferences setting = getSharedPreferences("FirstIn", 0);
+        Boolean user_first = setting.getBoolean("FIRST",true);
+        if(user_first){
+            SharedPreferences sp = getSharedPreferences("FirstDate", MODE_PRIVATE);
+            SharedPreferences.Editor editer = sp.edit();
+            editer.putString("Date", getCurrentDate());
+            editer.commit();
+            setting.edit().putBoolean("FIRST", false).commit();
+        }
     }
 
     @Override
@@ -61,7 +79,8 @@ public class ToolsTodayStep extends Activity implements SensorEventListener {
         } else if (sensorEvent.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
             counterDetector++;
         }
-        mTextViewStepNumber.setText("当前走了 " + counterDetector + " 步" + " ,总共走了 " + counterStep + " 步");
+        String date = getCurrentDate();
+        mTextViewStepNumber.setText("    当前走了 " + counterDetector + " 步" + " ,总共走了 " + counterStep + " 步" + "       " + date);
     }
 
     @Override
@@ -69,5 +88,10 @@ public class ToolsTodayStep extends Activity implements SensorEventListener {
         //当传感器精度发生变化时
     }
 
+    public String getCurrentDate() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date mdate = new Date(System.currentTimeMillis());
+        return simpleDateFormat.format(mdate);
+    }
 }
 
