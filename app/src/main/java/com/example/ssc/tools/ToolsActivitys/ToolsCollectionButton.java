@@ -17,7 +17,7 @@ public class ToolsCollectionButton extends Activity implements View.OnClickListe
 
     private Button mButtonLed;
     private Button mButtonClassTable;
-    private Button mButtonTodayStepCount, mButtonBirth;
+    private Button mButtonTodayStepCount, mButtonBirth, mButtonTrans;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +33,8 @@ public class ToolsCollectionButton extends Activity implements View.OnClickListe
         mButtonClassTable.setOnClickListener(this);
         mButtonTodayStepCount.setOnClickListener(this);
         mButtonBirth.setOnClickListener(this);
+        mButtonTrans.setOnClickListener(this);
+
     }
 
     private void initView() {
@@ -40,6 +42,7 @@ public class ToolsCollectionButton extends Activity implements View.OnClickListe
         mButtonClassTable = findViewById(R.id.button_classTable);
         mButtonTodayStepCount = findViewById(R.id.button_todayStepCount);
         mButtonBirth = findViewById(R.id.button_birth);
+        mButtonTrans = findViewById(R.id.button_translate);
     }
 
     @Override
@@ -56,6 +59,9 @@ public class ToolsCollectionButton extends Activity implements View.OnClickListe
                 break;
             case R.id.button_birth:
                 startActivity(new Intent(this, ToolsBirth.class));
+                break;
+            case R.id.button_translate:
+                startActivity(new Intent(this, ToolsTrans.class));
         }
     }
 }

@@ -14,5 +14,7 @@ public class BTSource extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.btsource);
 
+        String url = "http://gank.io/api/data/%e7%a6%8f%e5%88%a9/10/1";
+
     }
 }

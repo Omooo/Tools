@@ -90,6 +90,9 @@
         <activity android:name=".ToolsActivitys.ToolsDie">
 
         </activity>
+        <activity android:name=".ToolsActivitys.ToolsTrans">
+
+        </activity>
     </application>
 
 </manifest>
