@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.ssc.tools.R;
+import com.example.ssc.tools.utils.FastJsonGroup;
 
 import java.io.IOException;
 
@@ -47,7 +48,7 @@ public class ToolsTrans extends Activity {
     }
 
     public void getJson() {
-        String text = mEditText.getText().toString();
+        final String text = mEditText.getText().toString();
         OkHttpClient client = new OkHttpClient();
         final Request request = new Request.Builder().url(url + text).build();
         Call call = client.newCall(request);
@@ -64,9 +65,6 @@ public class ToolsTrans extends Activity {
                 JSONObject object = JSON.parseObject(jsonString);
                 JSONObject object1 = (JSONObject) object.get("basic");
                 JSONArray jsonArray = object1.getJSONArray("explains");
-//                List<FastJsonGroup> result;
-//                result = JSON.parseArray(jsonArray.toJSONString(), FastJsonGroup.class);
-//                Log.i("233--result", result.toString());
                 JSONArray array = object.getJSONArray("translation");
                 final String result = array.toJSONString() + jsonArray.toJSONString();
                 Log.i("233", result);
@@ -76,6 +74,10 @@ public class ToolsTrans extends Activity {
                         mTextView.setText(result);
                     }
                 });
+                String test = "{\"query\":\"ill\",\"errorCode\":0}";
+                FastJsonGroup group = JSON.parseObject(test, FastJsonGroup.class);
+                System.out.println("ErrorCode: "+group.getErrorCodeQuery() +"  Query: "+ group.getQuery());
+
             }
         });
     }

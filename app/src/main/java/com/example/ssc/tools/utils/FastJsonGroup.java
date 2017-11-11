@@ -5,13 +5,22 @@ package com.example.ssc.tools.utils;
  */
 
 public class FastJsonGroup {
-    private String mString;
+    private String query;
+    private long errorCodeQuery;
 
-    public String getString() {
-        return mString;
+    public String getQuery() {
+        return query;
     }
 
-    public void setString(String string) {
-        mString = string;
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public long getErrorCodeQuery() {
+        return errorCodeQuery;
+    }
+
+    public void setErrorCodeQuery(long errorCodeQuery) {
+        this.errorCodeQuery = errorCodeQuery;
     }
 }
