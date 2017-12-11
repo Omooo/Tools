@@ -76,7 +76,7 @@ public class ToolsCollectionButton extends Activity implements View.OnClickListe
 }
 /**
  * TODO : ↓
- * 自从加了 看会直播 功能，工具箱其他功能在模拟器上运行变得巨卡，但是其他非工具箱里面的功能都还好。
+    自从加了 看会直播 功能，工具箱其他功能在模拟器上运行变得巨卡，但是其他非工具箱里面的功能都还好。
  * 又在真机（Mi5）测试一下，都还好，不知道问题出现在在哪。
  * 看会直播功能，如想去掉，可以删除以下实现类及布局文件：
  * ToolsPlayVideoActivity.class
