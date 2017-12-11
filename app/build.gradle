@@ -10,6 +10,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //直播所需（
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+        //直播所需 ）
     }
     buildTypes {
         release {
@@ -17,34 +24,49 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
+    //直播所需（
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a', 'x86_64'
+            universalApk true
+        }
+    }
+    //直播所需 ）
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+        compile 'com.android.support:appcompat-v7:26.+'
+        compile 'com.android.support:design:26.+'
+        compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support:design:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+        compile 'com.squareup.okhttp3:okhttp:3.8.1'
+        compile 'org.jsoup:jsoup:1.10.3'
+        compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
+        compile 'com.gongwen:marqueelibrary:1.1.1'
+        compile 'com.android.support:appcompat-v7:26'
 
-    compile 'com.squareup.okhttp3:okhttp:3.8.1'
-    compile 'org.jsoup:jsoup:1.10.3'
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
-    compile 'com.gongwen:marqueelibrary:1.1.1'
-    compile 'com.android.support:appcompat-v7:26'
-
-    //QRCode
-    compile 'com.journeyapps:zxing-android-embedded:3.4.0'
-    compile 'com.android.support:appcompat-v7'
+        //QRCode
+        compile 'com.journeyapps:zxing-android-embedded:3.4.0'
+        compile 'com.android.support:appcompat-v7'
 //    compile 'com.android.support:appcompat-v7:23.1.0'
-    //AwesomeQRCode
-    compile 'com.github.SumiMakito:AwesomeQRCode:1.0.6'
-    //TextView特效
-    compile "com.hanks:htextview-base:0.1.1"
-    compile "com.hanks:htextview-scale:0.1.1"
+        //AwesomeQRCode
+        compile 'com.github.SumiMakito:AwesomeQRCode:1.0.6'
+        //TextView特效
+        compile "com.hanks:htextview-base:0.1.1"
+        compile "com.hanks:htextview-scale:0.1.1"
 
-    compile 'com.alibaba:fastjson:1.1.65.android'
+        compile 'com.alibaba:fastjson:1.1.65.android'
 
-    testCompile 'junit:junit:4.12'
+        // 直播依赖库
+        compile 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
+
+//    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
+//    compile 'com.dou361.ijkplayer-armv7a:jjdxm-ijkplayer-armv7a:1.0.0'
+
+        testCompile 'junit:junit:4.12'
+    }
 }

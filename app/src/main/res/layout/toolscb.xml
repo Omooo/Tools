@@ -21,6 +21,13 @@
             android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/button_living"
+            android:text="看看直播"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
     <LinearLayout
         android:layout_weight="1"
@@ -42,11 +49,18 @@
     </LinearLayout>
     <LinearLayout
         android:layout_weight="1"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button
             android:id="@+id/button_todayStepCount"
             android:text="计步器"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/button_ai"
+            android:text="人工智障"
             android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

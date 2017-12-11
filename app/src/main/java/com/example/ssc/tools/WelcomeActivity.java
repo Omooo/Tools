@@ -29,8 +29,13 @@ public class WelcomeActivity extends Activity implements OnClickListener, OnTouc
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //测量APP启动性能开始方法 --- 使用 Systrace 工具分析
+//        android.os.Trace.beginSection("StartActivity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_page);
+        //结束执行APP启动性能结束方法
+//        android.os.Trace.endSection();
+//        reportFullyDrawn();
 
         SharedPreferences setting = getSharedPreferences(isFirst, 0);
         Boolean user_first = setting.getBoolean("FIRST",true);

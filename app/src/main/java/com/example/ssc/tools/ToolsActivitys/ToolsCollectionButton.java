@@ -17,7 +17,7 @@ public class ToolsCollectionButton extends Activity implements View.OnClickListe
 
     private Button mButtonLed;
     private Button mButtonClassTable;
-    private Button mButtonTodayStepCount, mButtonBirth, mButtonTrans;
+    private Button mButtonTodayStepCount, mButtonBirth, mButtonTrans, mButtonLiving;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class ToolsCollectionButton extends Activity implements View.OnClickListe
         mButtonTodayStepCount.setOnClickListener(this);
         mButtonBirth.setOnClickListener(this);
         mButtonTrans.setOnClickListener(this);
+        mButtonLiving.setOnClickListener(this);
 
     }
 
@@ -43,6 +44,7 @@ public class ToolsCollectionButton extends Activity implements View.OnClickListe
         mButtonTodayStepCount = findViewById(R.id.button_todayStepCount);
         mButtonBirth = findViewById(R.id.button_birth);
         mButtonTrans = findViewById(R.id.button_translate);
+        mButtonLiving = findViewById(R.id.button_living);
     }
 
     @Override
@@ -62,6 +64,25 @@ public class ToolsCollectionButton extends Activity implements View.OnClickListe
                 break;
             case R.id.button_translate:
                 startActivity(new Intent(this, ToolsTrans.class));
+                break;
+            case R.id.button_ai:
+                startActivity(new Intent(this, Tools_AI.class));
+                break;
+            case R.id.button_living:
+                startActivity(new Intent(this, ToolsVideoList.class));
+                break;
         }
     }
 }
+/**
+ * TODO : ↓
+ * 自从加了 看会直播 功能，工具箱其他功能在模拟器上运行变得巨卡，但是其他非工具箱里面的功能都还好。
+ * 又在真机（Mi5）测试一下，都还好，不知道问题出现在在哪。
+ * 看会直播功能，如想去掉，可以删除以下实现类及布局文件：
+ * ToolsPlayVideoActivity.class
+ * ToolsVideoList.class
+ * tools_video_item.xml
+ * tools_video_list.xml
+ * tools_video_play.xml
+ * 以及 build.gradle 直播所需依赖库
+ */

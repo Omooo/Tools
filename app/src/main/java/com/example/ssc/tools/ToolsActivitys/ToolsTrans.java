@@ -85,5 +85,6 @@ public class ToolsTrans extends Activity {
         mEditText = findViewById(R.id.et_trans);
         mButton = findViewById(R.id.btn_trans);
         mTextView = findViewById(R.id.tv_translateResult);
+
     }
 }
