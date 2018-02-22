@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
@@ -67,6 +66,11 @@ android {
 //    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.6.0'
 //    compile 'com.dou361.ijkplayer-armv7a:jjdxm-ijkplayer-armv7a:1.0.0'
 
+        //省市区三级联动
+        compile 'liji.library.dev:citypickerview:3.1.5'
+
         testCompile 'junit:junit:4.12'
     }
+}
+dependencies {
 }

@@ -7,4 +7,5 @@
     <color name="viewBackground">@android:color/white</color>
     <color name="colorDayNightChange">@android:color/holo_orange_dark</color>
     <color name="colorLaunch">#3F51B5</color>
+    <color name="colorTextWrite">#FFFFFF</color>
 </resources>

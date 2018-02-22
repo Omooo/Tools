@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_weather) {
             // Handle the camera action
             //天气预报
-            startActivity(new Intent(MainActivity.this, WeatherForecast.class));
+            startActivity(new Intent(MainActivity.this, CoolWeatherForecast.class));
         } else if (id == R.id.nav_article) {
             //每日一文
             startActivity(new Intent(MainActivity.this, ArticleOneGet.class));
