@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#FF6666"
     android:fitsSystemWindows="false"
     android:orientation="vertical"
+    android:background="@mipmap/forecast_bg2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -87,7 +88,6 @@
                     android:layout_marginBottom="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#8000"
                     android:orientation="vertical">
                 </LinearLayout>
             </LinearLayout>
@@ -111,7 +111,6 @@
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tv_aqi"
-                        android:text="54"
                         android:textSize="40sp"
                         android:textColor="@color/colorTextWrite"
                         android:layout_marginTop="15dp"
@@ -121,7 +120,6 @@
                         android:layout_height="wrap_content" />
                     <TextView
                         android:id="@+id/tv_pm"
-                        android:text="38"
                         android:textSize="40sp"
                         android:textColor="@color/colorTextWrite"
                         android:layout_alignParentEnd="true"
@@ -169,7 +167,6 @@
                     android:textColor="@color/colorTextWrite"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
-                    android:text="啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦溜了溜了啦啦啦啦啦啦啦啦啦啦啦啦啦啦"
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -179,7 +176,6 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
-                    android:text="啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦溜了溜了啦啦啦啦啦啦啦啦啦啦啦啦啦啦"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
@@ -187,9 +183,16 @@
                     android:textColor="@color/colorTextWrite"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_suggestion4"
+                    android:textColor="@color/colorTextWrite"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginEnd="15dp"
-                    android:text="啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦溜了溜了啦啦啦啦啦啦啦啦啦啦啦啦啦啦"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>

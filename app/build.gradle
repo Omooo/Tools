@@ -69,6 +69,11 @@ android {
         //省市区三级联动
         compile 'liji.library.dev:citypickerview:3.1.5'
 
+        //引导层
+        compile ('com.github.huburt-Hu:NewbieGuide:v1.2.0') {
+            exclude group: 'com.android.support'
+        }
+
         testCompile 'junit:junit:4.12'
     }
 }
